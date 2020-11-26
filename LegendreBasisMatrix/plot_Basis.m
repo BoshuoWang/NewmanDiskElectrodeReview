@@ -171,7 +171,7 @@ colormap(h_f,bluewhitered(512));
 h_cb = colorbar(h_sp_0, 'SouthOutside');
 set(h_cb, format_color_bar, 'TickLength',0.001);
 h_cb.Position(2) = 1 - (y_title_space + y_length(indP(0)) + y_gap *  2 + y_cb);
-%%
+%
 for ii = 1 : length(N_plot) 
     h_sp = axes(h_f,'Position',axes_pos{ii});
     hold on;box on;
