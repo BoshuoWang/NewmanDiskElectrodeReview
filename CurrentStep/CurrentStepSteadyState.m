@@ -54,13 +54,13 @@ set(h_a, format_axis);
 ylabel(h_a, 'Normalized steady state voltage $V^{\mathrm{SS}}/V_{0}$');
 xlabel(h_a, 'Normalized Faradaic conductance $G$');
 
-set(h_f,format_figure,'Position',[0,0, 1200 800]);
+set(h_f,format_figure,'Position',[0,0, 1200 600]);
 set(findobj(h_f, 'Type','line'), format_line,'Color','k');
 
 figure_name = 'VSS';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1150,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 
 %%
@@ -79,14 +79,13 @@ ylabel(h_a, 'Scaling factor $K$');
 xlabel(h_a, 'Normalized Faradaic conductance $G$');
 
 
-set(h_f,format_figure,'Position',[0,0, 1200 800]);
+set(h_f,format_figure,'Position',[0,0, 1200 600]);
 set(findobj(h_f, 'Type','line'), format_line,'Color','k');
 
 figure_name = 'VoltageStepScalingFactor';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
-
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1150,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 rmpath(fullfile('..','LegendreBasisMatrix'))

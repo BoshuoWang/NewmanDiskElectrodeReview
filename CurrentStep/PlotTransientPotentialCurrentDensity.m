@@ -86,7 +86,7 @@ save('I_TZ.mat', 'G_plot', 'C', 'r_num', 'PhiTZi', 'JTZi', 'PhiTZ', 'JTZ','JTZ_f
 %%
 h_f = figure;
 h_sp = subplot(20,2,[1,2]);
-title(sprintf('Transient component of current step response'));
+title(sprintf('Eigenfunctions of current step response'));
 set(h_sp.Title, format_title);
 set(h_sp,format_blank_axis);
 
@@ -114,7 +114,7 @@ set(h_sp, format_axis);
 set([h_sp.XLabel,h_sp.YLabel], format_axis_label);
 
 
-%%
+%
 h_sp = subplot(20,2,[4,40]);
 plot(h_sp, r_num(1:end-1), JTZi(:,1:N_plot)/(4/pi), 'k');     % normalization factor: 4*B_0/pi=4/pi
 hold on;
@@ -139,9 +139,9 @@ set(findobj(h_f, 'Type','line'), format_line);
 set(findobj(h_f, 'Type','text'), format_text);
 
 figure_name = 'U0J0_eigen';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1450,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 h_f = figure;
@@ -194,15 +194,15 @@ xlabel({'Conductance  $G$'});ylabel('Radial position $r/r_{0}$');
 zlabel({'Current density  $J^{\mathrm{TZ}}_{0}(r,0^{+})/\overline{J_{0}}$'});
 
 
-set(h_f,format_figure,'Position',[0,0,1800,900]);
+set(h_f,format_figure,'Position',[0,0,1800,850]);
 set(findobj(h_f, 'Type','line'), format_line, 'LineWidth', 1.5,'Color','k');
 set(findobj(h_f, 'Type','text'), format_text);
 
 
 figure_name = 'U0J0_TZ';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1750,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 h_f = figure;
@@ -246,14 +246,14 @@ xlabel({'Conductance  $G$'});ylabel('Radial position $r/r_{0}$');
 zlabel({'Current density  $J^{\mathrm{TZ}}_{0}(r,0^{+})/\overline{J_{0}}$'});
 
 
-set(h_f,format_figure,'Position',[0,0,1800,900]);
+set(h_f,format_figure,'Position',[0,0,1800,850]);
 set(findobj(h_f, 'Type','line'), format_line, 'LineWidth', 1.5,'Color','k');
 set(findobj(h_f, 'Type','text'), format_text);
 
 figure_name = 'U0J0_TZ_unfilt';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1750,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 rmpath(fullfile('..','LegendreBasisMatrix'))

@@ -75,17 +75,15 @@ for ii = 1 : length(G)
     zlabel({'Current density  $J^{\mathrm{H}}_{0}(r)/\overline{J_0^{\mathrm{H}}}$'});
 
     
-    set(h_f,format_figure,'Position',[0,0,1800,900]);
+    set(h_f,format_figure,'Position',[0,0,1800,850]);
     set(findobj(h_f, 'Type','line'), format_line, 'LineWidth', 1.5,'Color','k');
     set(findobj(h_f, 'Type','text'), format_text);
     
     figure_name = sprintf('U0J0_G%g',G(ii));
-    saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-    [imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-    imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+    % saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+    im = frame2im(getframe(h_f));
+    imwrite(im(:,51:1750,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 end
-
-
 %%
 rmpath(fullfile('..','LegendreBasisMatrix'))

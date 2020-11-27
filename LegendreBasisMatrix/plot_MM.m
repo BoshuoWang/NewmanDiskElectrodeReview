@@ -48,7 +48,7 @@ format_axis.Xlim = 10.^[-4,4];
 format_axis.Ylim = [1e-6,1.0];
 ylabel('$$M_{2n}(\xi)$$');
 xlabel('$$\xi$$');
-title('"Radial" component of the general solution');
+title('``Radial" component of the general solution');
 
 set(h_a, format_axis, 'PlotBoxAspectRatio', [4,3,1]);
 set([h_a.XLabel,h_a.YLabel], format_axis_label);
@@ -61,6 +61,6 @@ set(findobj(h_f, 'Type','text'), format_text);
 
 %%
 figure_name = 'MM';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1100,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');

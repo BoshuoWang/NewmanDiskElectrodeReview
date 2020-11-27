@@ -39,7 +39,7 @@ text(h_sp, 1.5e0,  1.5, '$G=1$');
 text(h_sp, 1.5e1,  1.2, '$G=10$');
 % plot_arrow(2.4,1.26,2.4,1.13,'headwidth', 0.625,'headheight', 0.25);
 
-%%
+%
 h_sp = subplot(1,2,2);
 Z_cap = squeeze(Ceff(:,:,end))./kron(ones(size(G)),Omega');
 loglog(h_sp, Omega, Z_cap);
@@ -71,9 +71,9 @@ set(findobj(h_f, 'Type','text'), format_text, 'VerticalAlignment','Middle', 'Hor
 
 
 figure_name = 'EffectiveRC';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,101:1400,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 
@@ -95,9 +95,13 @@ format_axis.XScale = 'log';
 format_axis.YScale = 'linear';
 
 set(h_a, format_axis);
-ylabel(h_a,'log-log slope of normalized capacitive impedance');
-xlabel(h_a,'Normalized frequency $\Omega$');
+set([h_a.XLabel,h_a.YLabel], format_axis_label);
+set(h_a.Title, format_title);
+set(h_f,format_figure,'Position',[0,0, 1200 800]);
 
+title(h_a,'log-log slope of normalized capacitive impedance');
+ylabel(h_a,'$\mathrm{d} (\mathrm{lg}(\Im(Z^{\mathrm{H}})) / \mathrm{d} (\mathrm{lg}(\Omega))$');
+xlabel(h_a,'Normalized frequency $\Omega$');
 text(h_a,1e-4,-0.95, '$G=0$');
 text(h_a,1e-2, 0.2, '$G=0.01$','Rotation',-80);
 text(h_a,1e-1, 0.2, '$G=0.1$','Rotation',-80);
@@ -105,9 +109,6 @@ text(h_a,1e0, 0.2, '$G=1$','Rotation',-80);
 text(h_a,1.2e1, 0.2, '$G=10$','Rotation',-80);
 
 
-set([h_a.XLabel,h_a.YLabel], format_axis_label);
-set(h_a.Title, format_title);
-set(h_f,format_figure,'Position',[0,0, 1200 800]);
 set(setdiff(findobj(h_f, 'Type','line'),h_l), format_line, 'Color','k');
 set(findobj(h_f, 'Type','text'), format_text, 'VerticalAlignment','Middle', 'HorizontalAlignment','Left');
 
@@ -116,9 +117,9 @@ h_t = text(h_a,1e-4,max_slope_G0, 'max slope $G=0$');
 set(h_t, format_text, 'VerticalAlignment','Bottom', 'HorizontalAlignment','Left');
 
 figure_name = 'loglogslope_C';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1150,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 rmpath(fullfile('..','LegendreBasisMatrix'))

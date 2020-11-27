@@ -34,7 +34,7 @@ format_axis.ylim = [-1,1] * max_y;
 
 set([h_a.XLabel,h_a.YLabel], format_axis_label);
 xlabel(h_a, '$$n$$');
-ylabel(h_a, '$$\mathrm{CP}_{2n}^{\mathbf{MP}}$$');
+ylabel(h_a, '$$\mathrm{c}_{2n}^{\mathrm{MP}}$$');
 set(h_a, format_axis);
 set(h_a,'XTick',[0,N/8:N/8:N])
 
@@ -44,15 +44,15 @@ set(h_f,format_figure,'Position',[50,50,1200,800]);
 hold on;
 text(h_a, N/2,  abs(CP_num(indP(N/2)))*0.93, 'Even $$n$$');
 text(h_a, N/2, -abs(CP_num(indP(N/2)))*0.93, 'Odd $$n$$');
-text(h_a, N/2, 0, '$$\mathrm{CP}_{2n}^{\mathbf{MP}}\rightarrow (-1)^{n}\sqrt{\pi n}$$');
+text(h_a, N/2, 0, '$$\mathrm{c}_{2n}^{\mathrm/8{MP}}\rightarrow (-1)^{n}\sqrt{\pi n}$$');
 % plot(h_a, N_vec0(2:end), sqrt(pi*N_vec0(2:end)),'r--','LineWidth',2);
 % plot(h_a, N_vec0(2:end),-sqrt(pi*N_vec0(2:end)),'r--','LineWidth',2);
 set(findobj(h_f, 'Type','text'), format_text);
 
 figure_name = 'CP_MP';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1150,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 h_f = figure;
@@ -77,9 +77,9 @@ set(findobj(h_f, 'Type','text'), format_text);
 
 
 figure_name = 'MM_diff';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1150,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 h_f = figure;
@@ -91,7 +91,7 @@ format_axis.xlim = [min(N_vec0),max(N_vec0)/32];
 format_axis.ylim = [pi/8 * 0.99, max(M_diag)];
 set([h_a.XLabel,h_a.YLabel], format_axis_label);
 xlabel(h_a,'$$n$$');
-ylabel(h_a,'{\boldmath$${M}$$}$$_{n,n}$$');
+ylabel(h_a,'$$m_{n,n}$$');
 set(h_a, format_axis);
 set(h_a,'XTick',[0,(1/8:1/8:1)*format_axis.xlim(2)]);
 
@@ -104,11 +104,11 @@ plot(N_vec0,pi/8*ones(size(N_vec0)),'k--','LineWidth',0.5);
 h_a.YTick = [pi/8, h_a.YTick];
 h_a.YTickLabel{1} = '$$\pi/8$$';    
 text(h_a,format_axis.xlim(2)/2, pi/8 * 1.01, ...
-        '{\boldmath$${M}$$}$$_{n,n}\rightarrow \pi/8$$','VerticalAlignment','Bottom');
+        '$$m_{n,n}\rightarrow \pi/8$$','VerticalAlignment','Bottom');
 set(findobj(h_f, 'Type','text'), format_text);
 
 
 figure_name = 'M_diag';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1150,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');

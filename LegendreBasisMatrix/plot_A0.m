@@ -35,7 +35,7 @@ format_axis.zlim = [-10,0];
 set([h_a.XLabel,h_a.YLabel,h_a.ZLabel], format_axis_label);
 ylabel(h_a, '$$n$$');
 xlabel(h_a, '$$m$$');
-zlabel(h_a, '$$|$${\boldmath$${A}$$}$$_{0}(n,m)|$$');
+zlabel(h_a, '$$|a_{n,m}|$$');
 % set(h_a.Title, format_title);
 % title('$$|$${\boldmath$${A}$$}$$_{0}(n,m)|$$')
 
@@ -62,6 +62,6 @@ end
 
 %%
 figure_name = 'A0';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(26:775,26:1125,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');

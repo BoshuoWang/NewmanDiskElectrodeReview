@@ -73,15 +73,15 @@ xlabel({'Conductance  $G$'});ylabel('Radial position $r/r_{0}$');
 zlabel({'Current density  $J^{\mathrm{SS}}_{0}(r)/\overline{J_{0}}$'});
 
 
-set(h_f,format_figure,'Position',[0,0,1800,900]);
+set(h_f,format_figure,'Position',[0,0,1800,850]);
 set(findobj(h_f, 'Type','line'), format_line, 'LineWidth', 1.5,'Color','k');
 set(findobj(h_f, 'Type','text'), format_text);
 
-
+%%
 figure_name = 'U0J0_SS';
-saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
-[imind,cm] = rgb2ind(frame2im(getframe(h_f)),256);
-imwrite(    imind,cm,fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
+% saveas(h_f,fullfile('Figures',[figure_name,'.fig']));
+im = frame2im(getframe(h_f));
+imwrite(im(:,51:1750,:),fullfile('Figures',[figure_name,'.tif']),'tif','WriteMode','overwrite', 'Resolution',500,'Compression','none');
 
 %%
 rmpath(fullfile('..','LegendreBasisMatrix'))
